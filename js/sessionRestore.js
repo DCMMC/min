@@ -55,7 +55,8 @@ window.sessionRestore = {
 
     try {
       // first run, show the tour
-      if (!savedStringData) {
+      // DCMMC: disable the tour
+      if (false && !savedStringData) {
         tasks.setSelected(tasks.add()) // create a new task
 
         var newTab = tasks.getSelected().tabs.add({
@@ -106,7 +107,7 @@ window.sessionRestore = {
 
       // if this isn't the first run, and the survey popup hasn't been shown yet, show it
 
-      if (shouldShowSurvey) {
+      if (false && shouldShowSurvey) {
         fetch('https://minbrowser.org/survey/survey15.json').then(function (response) {
           return response.json()
         }).then(function (data) {

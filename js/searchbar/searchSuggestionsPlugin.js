@@ -5,6 +5,9 @@ var urlParser = require('util/urlParser.js')
 var searchEngine = require('util/searchEngine.js')
 
 function showSearchSuggestions (text, input, event) {
+  // DCMMC: we do not need this
+  return
+
   // TODO support search suggestions for other search engines
   if (searchEngine.getCurrent().name !== 'DuckDuckGo') {
     searchbarPlugins.reset('searchSuggestions')

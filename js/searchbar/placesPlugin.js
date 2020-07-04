@@ -9,6 +9,7 @@ var readerDecision = require('readerDecision.js')
 var browserUI = require('browserUI.js')
 
 var surveyURL
+/*
 fetch('https://minbrowser.github.io/min/searchSurvey/searchSurvey.json').then(function (response) {
   return response.json()
 }).then(function (data) {
@@ -16,6 +17,7 @@ fetch('https://minbrowser.github.io/min/searchSurvey/searchSurvey.json').then(fu
     surveyURL = data.url
   }
 })
+*/
 
 var places = require('places/places.js')
 var searchEngine = require('util/searchEngine.js')
@@ -126,7 +128,7 @@ function showSearchbarPlaceResults (text, input, event, pluginName = 'places') {
       feedbackLink.textContent = 'Search Feedback'
       feedbackLink.addEventListener('click', function (e) {
         var url = surveyURL + '?query=' + encodeURIComponent(text) + '&results=' + encodeURIComponent(results.map(r => r.url).join('\n')) + '&version=' + encodeURIComponent(window.globalArgs['app-version'])
-        browserUI.addTab(tabs.add({url: url}), {enterEditMode: false})
+        // browserUI.addTab(tabs.add({url: url}), {enterEditMode: false})
       })
       searchbarPlugins.getContainer('fullTextPlaces').appendChild(feedbackLink)
     }

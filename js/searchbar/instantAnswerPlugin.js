@@ -58,6 +58,9 @@ var instantAnswers = {
 }
 
 function showSearchbarInstantAnswers (text, input, event) {
+  // DCMMC: we do not need this
+  return
+
   // only make requests to the DDG api if DDG is set as the search engine
   if (searchEngine.getCurrent().name !== 'DuckDuckGo') {
     return

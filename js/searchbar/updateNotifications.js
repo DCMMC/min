@@ -40,6 +40,8 @@ function getUpdateRandomNum () {
 }
 
 function getAvailableUpdates () {
+  // DCMMC: do not check update
+  return
   if (settings.get('updateNotificationsEnabled') !== false) {
     console.info('checking for updates')
     fetch(UPDATE_URL, {
