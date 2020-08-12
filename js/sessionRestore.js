@@ -88,7 +88,7 @@ window.sessionRestore = {
 
       // switch to the previously selected tasks
 
-      if (tasks.getSelected().tabs.isEmpty() || (!data.saveTime || Date.now() - data.saveTime < 30000)) {
+      if (false && (tasks.getSelected().tabs.isEmpty() || (!data.saveTime || Date.now() - data.saveTime < 30000))) {
         browserUI.switchToTask(data.state.selectedTask)
         if (tasks.getSelected().tabs.isEmpty()) {
           tabEditor.show(tasks.getSelected().tabs.getSelected())
@@ -132,21 +132,21 @@ window.sessionRestore = {
 
       console.error('restoring session failed: ', e)
 
-      var backupSavePath = require('path').join(window.globalArgs['user-data-path'], 'sessionRestoreBackup-' + Date.now() + '.json')
-
-      fs.writeFileSync(backupSavePath, savedStringData)
-
-      // destroy any tabs that were created during the restore attempt
-      initializeTabState()
-
-      // create a new tab with an explanation of what happened
-      var newTask = tasks.add()
-      var newSessionErrorTab = tasks.get(newTask).tabs.add({
-        url: 'file://' + __dirname + '/pages/sessionRestoreError/index.html?backupLoc=' + encodeURIComponent(backupSavePath)
-      })
-
-      browserUI.switchToTask(newTask)
-      browserUI.switchToTab(newSessionErrorTab)
+      // var backupSavePath = require('path').join(window.globalArgs['user-data-path'], 'sessionRestoreBackup-' + Date.now() + '.json')
+						//
+      // fs.writeFileSync(backupSavePath, savedStringData)
+						//
+      // // destroy any tabs that were created during the restore attempt
+      // initializeTabState()
+						//
+      // // create a new tab with an explanation of what happened
+      // var newTask = tasks.add()
+      // var newSessionErrorTab = tasks.get(newTask).tabs.add({
+      //   url: 'file://' + __dirname + '/pages/sessionRestoreError/index.html?backupLoc=' + encodeURIComponent(backupSavePath)
+      // })
+						//
+      // browserUI.switchToTask(newTask)
+      // browserUI.switchToTab(newSessionErrorTab)
     }
   }
 }
@@ -154,9 +154,9 @@ window.sessionRestore = {
 // TODO make this a preference
 
 sessionRestore.restore()
-
+//
 setInterval(sessionRestore.save, 30000)
 
 window.onbeforeunload = function (e) {
-  sessionRestore.save(true, true)
+  // sessionRestore.save(true, true)
 }

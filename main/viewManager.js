@@ -101,7 +101,8 @@ function setView (id) {
 }
 
 function setBounds (id, bounds) {
-  viewMap[id].setBounds(bounds)
+	if (viewMap[id])
+		viewMap[id].setBounds(bounds)
 }
 
 function focusView (id) {

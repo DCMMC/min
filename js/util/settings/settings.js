@@ -45,7 +45,7 @@ var settings = {
     try {
       fileData = fs.readFileSync(settings.filePath, 'utf-8')
     } catch (e) {
-      console.warn(e)
+      // console.warn(e)
     }
     if (fileData) {
       settings.list = JSON.parse(fileData)
