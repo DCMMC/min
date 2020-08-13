@@ -36,37 +36,37 @@ window.sessionRestore = {
   },
   restore: function () {
     var savedStringData
-    try {
-      savedStringData = fs.readFileSync(sessionRestore.savePath, 'utf-8')
-    } catch (e) {
-      console.warn('failed to read session restore data', e)
-    }
-    if (!savedStringData) {
-      // migrate from previous version
-      savedStringData = localStorage.getItem('sessionrestoredata')
-    }
+    // try {
+    //   savedStringData = fs.readFileSync(sessionRestore.savePath, 'utf-8')
+    // } catch (e) {
+    //   // console.warn('failed to read session restore data', e)
+    // }
+    // if (!savedStringData) {
+    //   // migrate from previous version
+    //   savedStringData = localStorage.getItem('sessionrestoredata')
+    // }
 
     /* the survey should only be shown after an upgrade from an earlier version */
     var shouldShowSurvey = false
-    if (savedStringData && !localStorage.getItem('1.15survey')) {
-      shouldShowSurvey = true
-    }
+    // if (savedStringData && !localStorage.getItem('1.15survey')) {
+    //   shouldShowSurvey = true
+    // }
     localStorage.setItem('1.15survey', 'true')
 
     try {
-      // first run, show the tour
-      // DCMMC: disable the tour
-      if (false && !savedStringData) {
-        tasks.setSelected(tasks.add()) // create a new task
+      // first run, donot show the tour
+      // if (!savedStringData) {
+			tasks.setSelected(tasks.add()) // create a new task
 
-        var newTab = tasks.getSelected().tabs.add({
-          url: 'https://minbrowser.github.io/min/tour'
-        })
-        browserUI.addTab(newTab, {
-          enterEditMode: false
-        })
-        return
-      }
+			var newTab = tasks.getSelected().tabs.add({
+				url: "",
+			})
+			browserUI.addTab(newTab, {
+			  enterEditMode: false
+			})
+			console.error('add new tab')
+			return
+      // }
 
       var data = JSON.parse(savedStringData)
 
@@ -155,7 +155,7 @@ window.sessionRestore = {
 
 sessionRestore.restore()
 //
-setInterval(sessionRestore.save, 30000)
+// setInterval(sessionRestore.save, 30000)
 
 window.onbeforeunload = function (e) {
   // sessionRestore.save(true, true)
